@@ -14,3 +14,5 @@ fun String.formatColor(rh: ResourceHelper, @ColorRes colorId: Int): String =
 fun String.formatColor(context: Context?, rh: ResourceHelper, @AttrRes attributeId: Int): String =
     "<font color='" + rh.gac(context, attributeId) + "'>" + this + "</font>"
 
+fun String.formatColorAndSize(context: Context?, rh: ResourceHelper, @AttrRes attributeId: Int, size: Int): String =
+    "<big><big><font color='" + rh.gac(context, attributeId) + "'>" + this + "</font></big></big>"
