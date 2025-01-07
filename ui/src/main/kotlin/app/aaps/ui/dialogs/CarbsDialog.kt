@@ -272,10 +272,10 @@ class CarbsDialog : DialogFragmentWithDate() {
             actions.add(rh.gs(app.aaps.core.ui.R.string.duration) + ": " + duration + rh.gs(app.aaps.core.interfaces.R.string.shorthour))
         if (carbsAfterConstraints > 0) {
             actions.add(
-                rh.gs(app.aaps.core.ui.R.string.carbs) + ": " + "<font color='" + rh.gac(
+                rh.gs(app.aaps.core.ui.R.string.carbs) + ": " + "<big><big><font color='" + rh.gac(
                     context,
                     app.aaps.core.ui.R.attr.carbsColor
-                ) + "'>" + rh.gs(app.aaps.core.objects.R.string.format_carbs, carbsAfterConstraints) + "</font>"
+                ) + "'>" + rh.gs(app.aaps.core.objects.R.string.format_carbs, carbsAfterConstraints) + "</font></big></big>"
             )
             if (carbsAfterConstraints != carbs)
                 actions.add("<font color='" + rh.gac(context, app.aaps.core.ui.R.attr.warningColor) + "'>" + rh.gs(R.string.carbs_constraint_applied) + "</font>")
@@ -284,10 +284,10 @@ class CarbsDialog : DialogFragmentWithDate() {
             if (carbsAfterConstraints < -cob) carbsAfterConstraints = ceil(-cob).toInt()
             if (timeOffset != 0) carbsAfterConstraints = 0
             actions.add(
-                rh.gs(app.aaps.core.ui.R.string.carbs) + ": " + "<font color='" + rh.gac(
+                rh.gs(app.aaps.core.ui.R.string.carbs) + ": " + "<big><big><font color='" + rh.gac(
                     context,
                     app.aaps.core.ui.R.attr.warningColor
-                ) + "'>" + rh.gs(app.aaps.core.objects.R.string.format_carbs, carbsAfterConstraints) + "</font>"
+                ) + "'>" + rh.gs(app.aaps.core.objects.R.string.format_carbs, carbsAfterConstraints) + "</font></big></big>"
             )
             if (carbsAfterConstraints != carbs)
                 actions.add("<font color='" + rh.gac(context, app.aaps.core.ui.R.attr.warningColor) + "'>" + rh.gs(R.string.carbs_constraint_applied) + "</font>")

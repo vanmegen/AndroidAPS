@@ -38,6 +38,7 @@ import app.aaps.core.keys.IntKey
 import app.aaps.core.keys.UnitDoubleKey
 import app.aaps.core.objects.constraints.ConstraintObject
 import app.aaps.core.objects.extensions.formatColor
+import app.aaps.core.objects.extensions.formatColorAndSize
 import app.aaps.core.ui.dialogs.OKDialog
 import app.aaps.core.ui.extensions.toVisibility
 import app.aaps.core.ui.toast.ToastUtils
@@ -203,7 +204,7 @@ class InsulinDialog : DialogFragmentWithDate() {
         if (insulinAfterConstraints > 0) {
             actions.add(
                 rh.gs(app.aaps.core.ui.R.string.bolus) + ": " + decimalFormatter.toPumpSupportedBolus(insulinAfterConstraints, activePlugin.activePump.pumpDescription.bolusStep)
-                    .formatColor(context, rh, app.aaps.core.ui.R.attr.bolusColor)
+                    .formatColorAndSize(context, rh, app.aaps.core.ui.R.attr.bolusColor, 48)
             )
             if (recordOnlyChecked)
                 actions.add(rh.gs(app.aaps.core.ui.R.string.bolus_recorded_only).formatColor(context, rh, app.aaps.core.ui.R.attr.warningColor))
