@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.DeadObjectException
 import androidx.core.app.ActivityCompat
 import app.aaps.core.interfaces.configuration.Config
 import app.aaps.core.interfaces.logging.AAPSLogger
@@ -108,7 +109,12 @@ class OmnipodDashBleManagerImpl @Inject constructor(
                 }
                 emitter.onComplete()
             } catch (ex: Exception) {
-                disconnect(false)
+                try {
+                    disconnect(false)
+                } catch (t: DeadObjectException) {
+                    aapsLogger.warn(LTag.PUMPBTCOMM, "Trying to disconnect dead connection for device with address ${podState.bluetoothAddress} failed with error $t")
+                }
+
                 emitter.tryOnError(ex)
             } finally {
                 busy.set(false)
@@ -176,7 +182,12 @@ class OmnipodDashBleManagerImpl @Inject constructor(
 
                 emitter.onComplete()
             } catch (ex: Exception) {
-                disconnect(false)
+                try {
+                    disconnect(false)
+                } catch (t: DeadObjectException) {
+                    aapsLogger.warn(LTag.PUMPBTCOMM, "Trying to disconnect dead connection for device with address ${podState.bluetoothAddress} failed with error $t")
+                }
+
                 emitter.tryOnError(ex)
             } finally {
                 busy.set(false)
@@ -263,7 +274,12 @@ class OmnipodDashBleManagerImpl @Inject constructor(
             emitter.onNext(PodEvent.Connected)
             emitter.onComplete()
         } catch (ex: Exception) {
-            disconnect(false)
+            try {
+                disconnect(false)
+            } catch (t: DeadObjectException) {
+                aapsLogger.warn(LTag.PUMPBTCOMM, "Trying to disconnect dead connection for device with address ${podState.bluetoothAddress} failed with error $t")
+            }
+
             emitter.tryOnError(ex)
         } finally {
             busy.set(false)
